@@ -201,6 +201,9 @@ int parse_format_option(Options* opts, SideFormat format_defs[], const char* con
     g_current_context = context; /* Set context for error messages */
 
     /* Read option name (2 or 3 chars) */
+    /* skip dash */
+    if(*g_current_arg_ptr == '-')
+        g_current_arg_ptr++;
     while (name_len < 3 && *g_current_arg_ptr && isalpha((unsigned char)*g_current_arg_ptr)) {
         opt_name[name_len++] = (char)toupper((unsigned char)*g_current_arg_ptr++); /* FIX C4244: Cast int to char */
     }
